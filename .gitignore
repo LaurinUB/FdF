@@ -3,4 +3,5 @@ libft/
 ./*.o
 test_maps/
 MLX42/
+LeakSanitizer/
 fdf
