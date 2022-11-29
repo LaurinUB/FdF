@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FdF.h                                              :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/11/29 11:32:18 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:11:34 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "./MLX42/include/MLX42/MLX42.h"
 # include <math.h>
 # include <fcntl.h>
+# define WIDTH 1024
+# define HEIGHT 768
 
 typedef struct s_point
 {
@@ -24,12 +26,13 @@ typedef struct s_point
 	int	z;
 }	t_point;
 
-typedef struct s_stuff
+typedef struct s_map
 {
-	struct t_point	*point;
-
-}	t_stuff;
+	mlx_t		*mlx;
+	mlx_image_t	*image;
+	t_point		**points;
+}	t_map;
 
 //init stuff
-void		ft_init_map(char *path);
+t_map		*ft_init_map(void);
 #endif

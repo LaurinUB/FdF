@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+         #
+#    By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:07:30 by luntiet-          #+#    #+#              #
-#    Updated: 2022/11/29 10:33:43 by luntiet-         ###   ########.fr        #
+#    Updated: 2022/11/29 22:30:53 by luntiet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(LSANLIB):
 	@if [ ! -d "LeakSanitizer" ]; then git clone https://github.com/mhahnFr/LeakSanitizer.git; fi
 	@$(MAKE) -C LeakSanitizer
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(MLX42) $(OBJ)
 	@$(CC) $(LINK_FLAGS) $(OBJ) $(MLX42) $(LIBFT) -o $(NAME) $(MLXFLAGS)
 
 $(LIBFT):
@@ -49,6 +49,7 @@ $(LIBFT):
 $(MLX42):
 	@if [ ! -d "MLX42" ]; then git clone https://github.com/codam-coding-college/MLX42.git; fi
 	@cd MLX42 && make
+
 clean:
 	@rm -rf $(OBJ)
 

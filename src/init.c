@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/11/29 11:03:25 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/11/29 23:08:38 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	ft_init_map(char *path)
+t_map	*ft_init_map(void)
 {
-	int		fd;
-	mlx_t	*mlx;
+	t_map	*map;
 
-	path = NULL;
-	fd = 0;
-	mlx = mlx_init(200, 200, "FdF", true);
-	if (!mlx)
+	map = malloc(sizeof(t_map));
+	map->mlx = mlx_init(WIDTH, HEIGHT, "FdF", false);
+	if (!map->mlx)
 		exit(EXIT_FAILURE);
-	mlx_loop(mlx);
-	mlx_terminate(mlx);
+	map->image = mlx_new_image(map->mlx, WIDTH, HEIGHT);
+	if (!map->image)
+		exit(EXIT_FAILURE);
+	return (map);
 }

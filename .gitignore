@@ -1,4 +1,6 @@
 libft/
 *.o
+./*.o
 test_maps/
 MLX42/
+fdf
