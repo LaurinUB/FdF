@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/11/29 10:41:25 by luntiet-         ###   ########.fr       */
+/*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
+/*   Updated: 2022/11/29 11:03:25 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-int	main(int argc, char **argv)
+void	ft_init_map(char *path)
 {
-	char	*path;
+	int		fd;
+	mlx_t	*mlx;
 
-	path = ft_strdup("./test_maps/");
-	if (argc != 2 || !argv || !*argv)
-		return (0);
-	path = ft_strjoin(path, argv[1]);
-	ft_init_map(path);
-	return (EXIT_SUCCESS);
+	path = NULL;
+	fd = 0;
+	mlx = mlx_init(200, 200, "FdF", true);
+	if (!mlx)
+		exit(EXIT_FAILURE);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 }

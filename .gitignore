@@ -1,3 +1,4 @@
-libft
+libft/
 *.o
-test_maps
+test_maps/
+MLX42/
