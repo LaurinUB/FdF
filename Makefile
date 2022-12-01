@@ -6,7 +6,7 @@
 #    By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:07:30 by luntiet-          #+#    #+#              #
-#    Updated: 2022/11/29 22:30:53 by luntiet          ###   ########.fr        #
+#    Updated: 2022/11/30 18:30:45 by luntiet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ MLXFLAGS = -lglfw -L "$(HOME)/.brew/opt/glfw/lib"
 NAME = fdf
 
 SRC = ./src/fdf.c \
-		./src/init.c
+		./src/init.c \
+		./src/draw.c
 
 OBJ = $(SRC:.c=.o)
 

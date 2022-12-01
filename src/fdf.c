@@ -6,7 +6,7 @@
 /*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/11/30 00:39:26 by luntiet          ###   ########.fr       */
+/*   Updated: 2022/11/30 20:58:35 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,12 @@ int	main(int argc, char **argv)
 	path = ft_strjoin(path, argv[1]);
 	map = ft_init_map();
 	file = ft_read_file(path);
-	ft_printf("%s", file);
+	map->file = file;
+	if (mlx_image_to_window(map->mlx, map->image, 0, 0) < 0)
+		return (ft_putendl_fd("Failed to draw", 2), 0);
+	ft_draw(map);
 	mlx_loop(map->mlx);
+	mlx_delete_image(map->mlx, map->image);
 	mlx_terminate(map->mlx);
 	free(path);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/11/29 23:11:34 by luntiet          ###   ########.fr       */
+/*   Updated: 2022/11/30 20:58:02 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ typedef struct s_map
 {
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	char		*file;
 	t_point		**points;
 }	t_map;
 
 //init stuff
+t_point		*ft_init_point(int x, int y, int z);
 t_map		*ft_init_map(void);
+//draw
+void		ft_draw(t_map *map);
 #endif
