@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/11/30 20:52:58 by luntiet          ###   ########.fr       */
+/*   Updated: 2022/12/01 19:20:52 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_point	*ft_init_point(int x, int y, int z)
 	point->x = x;
 	point->y = y;
 	point->z = z;
+	return point;
 }
 
 t_map	*ft_init_map(void)
@@ -35,5 +36,8 @@ t_map	*ft_init_map(void)
 	map->image = mlx_new_image(map->mlx, WIDTH, HEIGHT);
 	if (!map->image)
 		exit(EXIT_FAILURE);
+	map->points = malloc(sizeof(t_point *));
+	map->x_pos = 50;
+	map->y_pos = 50;
 	return (map);
 }
