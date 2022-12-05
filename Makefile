@@ -6,7 +6,7 @@
 #    By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:07:30 by luntiet-          #+#    #+#              #
-#    Updated: 2022/11/30 18:30:45 by luntiet          ###   ########.fr        #
+#    Updated: 2022/12/04 16:25:13 by luntiet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ NAME = fdf
 
 SRC = ./src/fdf.c \
 		./src/init.c \
-		./src/draw.c
+		./src/draw.c \
+		./src/utils.c
 
 OBJ = $(SRC:.c=.o)
 

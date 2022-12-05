@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/01 18:57:21 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/04 16:23:01 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ typedef struct s_map
 //init stuff
 t_point		*ft_init_point(int x, int y, int z);
 t_map		*ft_init_map(void);
+t_point		**ft_init_points(char **lines);
 //draw
-void		ft_draw(char *line, t_map *map);
+void		ft_draw(t_map *map);
+//utils
+void		ft_splitfree(char **str);
 #endif
