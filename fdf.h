@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/04 16:23:01 by luntiet          ###   ########.fr       */
+/*   Updated: 2022/12/05 16:22:05 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ typedef struct s_map
 {
 	mlx_t		*mlx;
 	mlx_image_t	*image;
-	char		*file;
 	t_point		**points;
 	int			x_pos;
 	int			y_pos;
+	int			col;
+	int			row;
 }	t_map;
 
 //init stuff
 t_point		*ft_init_point(int x, int y, int z);
 t_map		*ft_init_map(void);
-t_point		**ft_init_points(char **lines);
+t_point		**ft_init_point_lst(char **lines, t_map *map);
 //draw
 void		ft_draw(t_map *map);
 //utils
