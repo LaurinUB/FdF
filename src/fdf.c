@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/06 04:14:04 by luntiet          ###   ########.fr       */
+/*   Updated: 2022/12/06 10:54:39 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void	ft_free(t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->points[i])
-	{
-		free(map->points[i]);
-		i++;
-	}
-	free(map->points);
-	free(map);
-}
 
 char	*ft_read_file(char *path)
 {
@@ -51,60 +37,49 @@ char	*ft_read_file(char *path)
 	return (file);
 }
 
-void	ft_parse_points(char *file, t_map *map)
+void	ft_fill_points(char **lines, t_map *map)
 {
-	int		x;
-	int		y;
-	int		z;
-	char	**lines;
 	char	**column;
 	int		i;
 	int		j;
+	int		k;
 
-
-	z = 0;
-	j = 0;
 	i = 0;
+	j = 0;
+	k = 0;
+	while (lines[i])
+	{
+		column = ft_split(lines[i], ' ');
+		while (column[j])
+		{
+			map->points[k] = ft_init_point(map->x, map->y, ft_atoi(column[j]));
+			map->x += 25;
+			k++;
+			j++;
+		}
+		j = 0;
+		i++;
+		map->y += 25;
+		map->x = 50;
+		ft_splitfree(column);
+	}
+	map->points[k] = NULL;
+}
+
+void	ft_parse_points(char *file, t_map *map)
+{
+	char	**lines;
+
+	map->x = 50;
+	map->y = 50;
 	lines = ft_split(file, '\n');
 	if (!lines)
 		exit(EXIT_FAILURE);
 	map->points = ft_init_point_lst(lines, map);
 	if (!map->points)
 		exit(EXIT_FAILURE);
-	x = map->x_pos;
-	y = map->y_pos;
-	while (lines[i])
-	{
-		column = ft_split(lines[i], ' ');
-		while (column[j])
-		{
-			map->points[z] = ft_init_point(x, y, ft_atoi(column[j]));
-			x += 25;
-			z++;
-			j++;
-		}
-		j = 0;
-		y += 25;
-		x = map->x_pos;
-		ft_splitfree(column);
-		i++;
-	}
-	map->points[z] = NULL;
+	ft_fill_points(lines, map);
 	ft_splitfree(lines);
-}
-
-void	ft_quit(void *lol)
-{
-	t_map	*tab;
-
-	tab = (t_map *)lol;
-	if (mlx_is_key_down(tab->mlx, MLX_KEY_ESCAPE))
-	{
-		mlx_delete_image(tab->mlx, tab->image);
-		mlx_terminate(tab->mlx);
-		ft_free(tab);
-		exit(1);
-	}
 }
 
 int	main(int argc, char **argv)
