@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/05 18:02:32 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/06 04:07:28 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,8 @@ t_point	**ft_init_point_lst(char **lines, t_map *map)
 		return (NULL);
 	while (tmp[column] != NULL)
 		column++;
-	//ft_printf("%i, %i\n", row, column);
-	map->x_pos = ((WIDTH / 2) * cos(-0.523599));
-	map->y_pos = ((HEIGHT / 2) * sin(-0.523599));
-	map->col = column;
 	map->row = row;
-	//ft_printf("%i, %i\n", map->x_pos, map->y_pos);
+	map->col = column;
 	points = malloc(((row * column) + 1) * sizeof(t_point *));
 	if (!points)
 		return (exit(1), NULL);

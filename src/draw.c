@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/05 17:47:14 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/06 04:03:42 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_draw_line(t_map *map, t_point p1, t_point p2)
 		--pixels;
 	}
 }
-
+//(x - y) * cos(0.523599), (-1 * ft_atoi(column[j])) +(x + y) * sin(0.523599), ft_atoi(column[j])
 void	ft_draw(t_map *map)
 {
 	int	i;

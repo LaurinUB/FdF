@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/05 17:52:54 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/06 04:14:04 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ char	*ft_read_file(char *path)
 	return (file);
 }
 
-void	ft_parse_points(char *path, t_map *map)
+void	ft_parse_points(char *file, t_map *map)
 {
 	int		x;
 	int		y;
 	int		z;
 	char	**lines;
-	char	*file;
 	char	**column;
 	int		i;
 	int		j;
@@ -66,9 +65,6 @@ void	ft_parse_points(char *path, t_map *map)
 	z = 0;
 	j = 0;
 	i = 0;
-	file = ft_read_file(path);
-	if (!file)
-		exit(EXIT_FAILURE);
 	lines = ft_split(file, '\n');
 	if (!lines)
 		exit(EXIT_FAILURE);
@@ -82,13 +78,11 @@ void	ft_parse_points(char *path, t_map *map)
 		column = ft_split(lines[i], ' ');
 		while (column[j])
 		{
-			map->points[z] = ft_init_point((x - y) * cos(0.523599), (-1 * ft_atoi(column[j])) +(x + y) * sin(0.523599), ft_atoi(column[j]));
+			map->points[z] = ft_init_point(x, y, ft_atoi(column[j]));
 			x += 25;
 			z++;
 			j++;
-			//ft_printf("%i, %i ", x, y);
 		}
-		//ft_printf("\n");
 		j = 0;
 		y += 25;
 		x = map->x_pos;
@@ -97,7 +91,6 @@ void	ft_parse_points(char *path, t_map *map)
 	}
 	map->points[z] = NULL;
 	ft_splitfree(lines);
-	free(file);
 }
 
 void	ft_quit(void *lol)
@@ -117,13 +110,15 @@ void	ft_quit(void *lol)
 int	main(int argc, char **argv)
 {
 	t_map	*map;
+	char	*file;
 
 	if (argc != 2 || !argv || !*argv)
 		return (0);
 	map = ft_init_map();
 	if (!map)
 		return (exit(EXIT_FAILURE), 1);
-	ft_parse_points(argv[1], map);
+	file = ft_read_file(argv[1]);
+	ft_parse_points(file, map);
 	ft_draw(map);
 	if (mlx_image_to_window(map->mlx, map->image, 0, 0) < 0)
 		return (ft_putendl_fd("Failed to draw", 2), exit(1), 0);
@@ -132,6 +127,7 @@ int	main(int argc, char **argv)
 	mlx_delete_image(map->mlx, map->image);
 	mlx_terminate(map->mlx);
 	ft_free(map);
+	free(file);
 	//system("leaks fdf");
 	return (EXIT_SUCCESS);
 }
