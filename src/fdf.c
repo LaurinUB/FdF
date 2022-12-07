@@ -6,13 +6,13 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/06 10:54:39 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:02:06 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-char	*ft_read_file(char *path)
+char	*read_file(char *path)
 {
 	char	*line;
 	int		fd;
@@ -20,10 +20,7 @@ char	*ft_read_file(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putendl_fd("Error", 2);
-		exit(1);
-	}
+		return (NULL);
 	file = NULL;
 	line = get_next_line(fd);
 	while (line)
@@ -37,7 +34,7 @@ char	*ft_read_file(char *path)
 	return (file);
 }
 
-void	ft_fill_points(char **lines, t_map *map)
+void	fill_points(char **lines, t_map *map)
 {
 	char	**column;
 	int		i;
@@ -52,57 +49,60 @@ void	ft_fill_points(char **lines, t_map *map)
 		column = ft_split(lines[i], ' ');
 		while (column[j])
 		{
-			map->points[k] = ft_init_point(map->x, map->y, ft_atoi(column[j]));
-			map->x += 25;
+			map->points[k] = init_point(map->x, map->y, (ft_atoi(column[j])));
+			map->x += 1;
 			k++;
 			j++;
 		}
 		j = 0;
 		i++;
-		map->y += 25;
-		map->x = 50;
-		ft_splitfree(column);
+		map->y += 1;
+		map->x = 0;
+		split_free(column);
 	}
 	map->points[k] = NULL;
 }
 
-void	ft_parse_points(char *file, t_map *map)
+void	parse_points(char *path, t_map *map)
 {
 	char	**lines;
+	char	*file;
 
-	map->x = 50;
-	map->y = 50;
+	file = read_file(path);
+	if (!file)
+		quit(map);
 	lines = ft_split(file, '\n');
 	if (!lines)
-		exit(EXIT_FAILURE);
-	map->points = ft_init_point_lst(lines, map);
+		quit(map);
+	map->points = init_points_lst(lines, map);
 	if (!map->points)
-		exit(EXIT_FAILURE);
-	ft_fill_points(lines, map);
-	ft_splitfree(lines);
+	{
+		split_free(lines);
+		free_map(map);
+		exit_msg("Failed to init list of points");
+	}
+	fill_points(lines, map);
+	split_free(lines);
 }
 
 int	main(int argc, char **argv)
 {
 	t_map	*map;
-	char	*file;
 
 	if (argc != 2 || !argv || !*argv)
-		return (0);
-	map = ft_init_map();
+		exit_msg("Function should be called by ./fdf ./path/to/file");
+	map = init_map();
 	if (!map)
-		return (exit(EXIT_FAILURE), 1);
-	file = ft_read_file(argv[1]);
-	ft_parse_points(file, map);
-	ft_draw(map);
+		exit_msg("Failed to init map struct");
+	parse_points(argv[1], map);
+	draw(map);
 	if (mlx_image_to_window(map->mlx, map->image, 0, 0) < 0)
-		return (ft_putendl_fd("Failed to draw", 2), exit(1), 0);
-	mlx_loop_hook(map->mlx, &ft_quit, map);
+		exit_msg("Failed to draw");
+	mlx_loop_hook(map->mlx, &esc_quit, map);
 	mlx_loop(map->mlx);
 	mlx_delete_image(map->mlx, map->image);
 	mlx_terminate(map->mlx);
-	ft_free(map);
-	free(file);
+	free_map(map);
 	//system("leaks fdf");
 	return (EXIT_SUCCESS);
 }

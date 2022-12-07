@@ -6,13 +6,13 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/06 10:54:28 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:12:01 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-t_point	*ft_init_point(int x, int y, int z)
+t_point	*init_point(int x, int y, int z)
 {
 	t_point	*point;
 
@@ -25,35 +25,17 @@ t_point	*ft_init_point(int x, int y, int z)
 	return (point);
 }
 
-t_point	**ft_init_point_lst(char **lines, t_map *map)
+t_point	**init_points_lst(char **lines, t_map *map)
 {
 	t_point	**points;
-	int		row;
-	int		column;
-	char	**tmp;
 
-	row = 0;
-	column = 0;
-	points = NULL;
-	if (!lines)
-		return (NULL);
-	while (lines[row] != 0)
-		row++;
-	tmp = ft_split(lines[0], ' ');
-	if (!tmp)
-		return (NULL);
-	while (tmp[column] != NULL)
-		column++;
-	map->row = row;
-	map->col = column;
-	points = malloc(((row * column) + 1) * sizeof(t_point *));
+	points = malloc((mapsize(lines, map) + 1) * sizeof(t_point *));
 	if (!points)
-		return (exit(1), NULL);
-	ft_splitfree(tmp);
+		exit_msg("Allocation for points failed");
 	return (points);
 }
 
-t_map	*ft_init_map(void)
+t_map	*init_map(void)
 {
 	t_map	*map;
 

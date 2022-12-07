@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/06 10:53:41 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:11:56 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,30 @@ typedef struct s_map
 	int			row;
 }	t_map;
 
+typedef struct s_camera
+{
+	int		zoom;
+	int		x_offset;
+	int		y_offset;
+	double	alpha;
+	double	beta;
+	double	gamma;
+	float	z_divisor;
+}	t_camera;
+
 //init stuff
-t_point		*ft_init_point(int x, int y, int z);
-t_map		*ft_init_map(void);
-t_point		**ft_init_point_lst(char **lines, t_map *map);
+t_point		*init_point(int x, int y, int z);
+t_map		*init_map(void);
+t_point		**init_points_lst(char **lines, t_map *map);
 //draw
-void		ft_draw(t_map *map);
+void		project(t_point *point);
+void		draw(t_map *map);
 //utils
-void		ft_splitfree(char **str);
-void		ft_quit(void *lol);
-void		ft_free(t_map *map);
+void		exit_msg(char *str);
+int			mapsize(char **lines, t_map *map);
+void		quit(t_map *map);
+void		esc_quit(void *lol);
+//free_utils
+void		split_free(char **str);
+void		free_map(t_map *map);
 #endif
