@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/08 15:14:43 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:33:06 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	draw_pixel(t_map *map, int x, int y)
 {
 	if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
-		mlx_put_pixel(map->image, x, y, 4294967295);
+		mlx_put_pixel(map->image, x, y, 0x1111FF);
 }
 
 void	draw_line(t_map *map, t_point p1, t_point p2)
@@ -50,11 +50,11 @@ t_point	iso(t_point point)
 	x = point.x;
 	y = point.y;
 	point.x = (x - y) * cos(0.523599);
-	point.y = (-1 * point.z) + (x + y) *sin(0.523599);
+	point.y = (-1 * point.z) + (x + y) * sin(0.523599);
 	return (point);
 }
 
-t_point project(t_point p, t_map *map)
+t_point	project(t_point p, t_map *map)
 {
 	p.x *= map->zoom;
 	p.y *= map->zoom;
@@ -75,7 +75,6 @@ void	draw(t_map *map)
 	ft_bzero(map->image->pixels, WIDTH * HEIGHT * 4);
 	while (map->points[i])
 	{
-		//draw_pixel(map, project(*map->points[i], map).x, project(*map->points[i], map).y);
 		if (map->points[i + 1] != NULL && (i + 1) % map->col != 0)
 			draw_line(map, project(*map->points[i], map),
 				project(*map->points[i + 1], map));

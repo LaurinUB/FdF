@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:21:27 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/08 14:59:21 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:25:47 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,6 @@ void	quit(t_map *map)
 	mlx_terminate(map->mlx);
 	free(map);
 	exit(EXIT_SUCCESS);
-}
-
-void	key_bindings(void *map)
-{
-	t_map	*tmp;
-
-	tmp = (t_map *)map;
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_ESCAPE))
-	{
-		mlx_delete_image(tmp->mlx, tmp->image);
-		mlx_terminate(tmp->mlx);
-		free_map(tmp);
-		exit(EXIT_SUCCESS);
-	}
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_UP))
-		zoom(MLX_KEY_UP, map);
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_DOWN))
-		zoom(MLX_KEY_DOWN, map);
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_W))
-		move(MLX_KEY_W, map);
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_A))
-		move(MLX_KEY_A, map);
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_S))
-		move(MLX_KEY_S, map);
-	if (mlx_is_key_down(tmp->mlx, MLX_KEY_D))
-		move(MLX_KEY_D, map);
-
 }
 
 int	mapsize(char **lines, t_map *map)

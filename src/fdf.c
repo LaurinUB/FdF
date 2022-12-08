@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 14:11:19 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:33:34 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,5 @@ int	main(int argc, char **argv)
 	mlx_delete_image(map->mlx, map->image);
 	mlx_terminate(map->mlx);
 	free_map(map);
-	//system("leaks fdf");
 	return (EXIT_SUCCESS);
 }

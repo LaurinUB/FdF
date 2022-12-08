@@ -6,7 +6,7 @@
 #    By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:07:30 by luntiet-          #+#    #+#              #
-#    Updated: 2022/12/08 13:23:35 by luntiet-         ###   ########.fr        #
+#    Updated: 2022/12/08 17:26:09 by luntiet-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRC = ./src/fdf.c \
 		./src/draw.c \
 		./src/utils.c \
 		./src/free_utils.c \
-		./src/controls.c
+		./src/controls.c \
+		./src/key_hooks.c
 
 OBJ = $(SRC:.c=.o)
 

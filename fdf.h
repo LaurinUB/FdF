@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 15:16:08 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:42:31 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void		free_map(t_map *map);
 //controls
 void		zoom(int key, t_map *map);
 void		move(int key, t_map *map);
+void		mod_height(int key, t_map *map);
 #endif
