@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 09:21:31 by luntiet          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:11:16 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_map	*init_map(void)
 		return (exit(EXIT_FAILURE), NULL);
 	map->x = 0;
 	map->y = 0;
-	map->zoom = 14;
-	map->z_height = 3;
+	map->zoom = 10;
+	map->height = 3;
 	return (map);
 }

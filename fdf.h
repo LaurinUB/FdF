@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 09:21:50 by luntiet          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:16:08 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 # include <math.h>
 # include <fcntl.h>
 # define WIDTH 1024
-# define HEIGHT 768
+# define HEIGHT 767
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
+	int			x;
+	int			y;
+	int			z;
+	uint32_t	color;
 }	t_point;
 
 typedef struct s_map
@@ -36,7 +37,7 @@ typedef struct s_map
 	int			col;
 	int			row;
 	int			zoom;
-	int			z_height;
+	int			height;
 }	t_map;
 
 //init stuff
@@ -49,8 +50,12 @@ void		draw(t_map *map);
 void		exit_msg(char *str);
 int			mapsize(char **lines, t_map *map);
 void		quit(t_map *map);
-void		esc_quit(void *lol);
+void		key_bindings(void *lol);
+void		loop_map(int x_offset, int y_offset, t_map *map);
 //free_utils
 void		split_free(char **str);
 void		free_map(t_map *map);
+//controls
+void		zoom(int key, t_map *map);
+void		move(int key, t_map *map);
 #endif

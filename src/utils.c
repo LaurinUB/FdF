@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:21:27 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/07 09:47:03 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 14:59:21 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	quit(t_map *map)
 	exit(EXIT_SUCCESS);
 }
 
-void	esc_quit(void *map)
+void	key_bindings(void *map)
 {
 	t_map	*tmp;
 
@@ -32,6 +32,19 @@ void	esc_quit(void *map)
 		free_map(tmp);
 		exit(EXIT_SUCCESS);
 	}
+	if (mlx_is_key_down(tmp->mlx, MLX_KEY_UP))
+		zoom(MLX_KEY_UP, map);
+	if (mlx_is_key_down(tmp->mlx, MLX_KEY_DOWN))
+		zoom(MLX_KEY_DOWN, map);
+	if (mlx_is_key_down(tmp->mlx, MLX_KEY_W))
+		move(MLX_KEY_W, map);
+	if (mlx_is_key_down(tmp->mlx, MLX_KEY_A))
+		move(MLX_KEY_A, map);
+	if (mlx_is_key_down(tmp->mlx, MLX_KEY_S))
+		move(MLX_KEY_S, map);
+	if (mlx_is_key_down(tmp->mlx, MLX_KEY_D))
+		move(MLX_KEY_D, map);
+
 }
 
 int	mapsize(char **lines, t_map *map)
@@ -53,7 +66,7 @@ int	mapsize(char **lines, t_map *map)
 		column++;
 	map->row = row;
 	map->col = column;
-	free(tmp);
+	split_free(tmp);
 	return (column * row);
 }
 
@@ -61,4 +74,17 @@ void	exit_msg(char *str)
 {
 	ft_putendl_fd(str, 2);
 	exit(EXIT_FAILURE);
+}
+
+void	loop_map(int x_offset, int y_offset, t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (map->points[i])
+	{
+		map->points[i]->x += x_offset;
+		map->points[i]->y += y_offset;
+		i++;
+	}
 }
