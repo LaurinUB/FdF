@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/07 17:02:06 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 09:06:54 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	fill_points(char **lines, t_map *map)
 		column = ft_split(lines[i], ' ');
 		while (column[j])
 		{
-			map->points[k] = init_point(map->x, map->y, (ft_atoi(column[j])));
+			map->points[k] = init_point(map->x, map->y, ft_atoi(column[j]));
 			map->x += 1;
 			k++;
 			j++;

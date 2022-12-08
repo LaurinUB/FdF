@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/07 17:11:56 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 09:21:50 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,15 @@ typedef struct s_map
 	int			y;
 	int			col;
 	int			row;
+	int			zoom;
+	int			z_height;
 }	t_map;
-
-typedef struct s_camera
-{
-	int		zoom;
-	int		x_offset;
-	int		y_offset;
-	double	alpha;
-	double	beta;
-	double	gamma;
-	float	z_divisor;
-}	t_camera;
 
 //init stuff
 t_point		*init_point(int x, int y, int z);
 t_map		*init_map(void);
 t_point		**init_points_lst(char **lines, t_map *map);
 //draw
-void		project(t_point *point);
 void		draw(t_map *map);
 //utils
 void		exit_msg(char *str);

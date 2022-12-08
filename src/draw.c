@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luntiet <luntiet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/07 17:47:13 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/08 09:21:13 by luntiet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_pixel(t_map *map, int x, int y)
 		mlx_put_pixel(map->image, x, y, 0xFFFFFFFF);
 }
 
-void	draw_line(t_map *map, t_point *p1, t_point *p2)
+void	draw_line(t_map *map, t_point p1, t_point p2)
 {
 	double	delta_x;
 	double	delta_y;
@@ -30,13 +30,13 @@ void	draw_line(t_map *map, t_point *p1, t_point *p2)
 	double	pixel_x;
 	double	pixel_y;
 
-	delta_x = p2->x - p1->x;
-	delta_y = p2->y - p1->y;
+	delta_x = p2.x - p1.x;
+	delta_y = p2.y - p1.y;
 	pixels = sqrt((delta_x * delta_x) + (delta_y * delta_y));
 	delta_x /= pixels;
 	delta_y /= pixels;
-	pixel_x = p1->x;
-	pixel_y = p1->y;
+	pixel_x = p1.x;
+	pixel_y = p1.y;
 	while (pixels)
 	{
 		draw_pixel(map, pixel_x, pixel_y);
@@ -46,18 +46,29 @@ void	draw_line(t_map *map, t_point *p1, t_point *p2)
 	}
 }
 
-t_point	*iso(t_point *point)
+t_point	iso(t_point point)
 {
 	int		x;
 	int		y;
-	t_point	*tmp;
 
-	tmp = point;
-	x = (point->x - point->y) * cos(0.523599);
-	y = (-1 * point->z) + (point->x + point->y) *sin(0.523599);
-	tmp->x = x;
-	tmp->y = y;
-	return (tmp);
+	x = point.x;
+	y = point.y;
+	point.x = (x - y) * cos(0.523599);
+	point.y = (-1 * point.z) + (x + y) *sin(0.523599);
+	return (point);
+}
+
+t_point project(t_point p, t_map *map)
+{
+	//ft_printf("after projection %i\n", p->x);
+	p.x *= map->zoom;
+	//ft_printf("before projection %i\n", p->x);
+	p.y *= map->zoom;
+	p.z *= map->zoom / map->z_height;
+	p = iso(p);
+	p.x += WIDTH / 2;
+	p.y += HEIGHT / 2;
+	return (p);
 }
 
 void	draw(t_map *map)
@@ -67,11 +78,13 @@ void	draw(t_map *map)
 	i = 0;
 	while (map->points[i])
 	{
-		draw_pixel(map, iso(map->points[i])->x, iso(map->points[i])->y);
+		draw_pixel(map, project(*map->points[i], map).x, project(*map->points[i], map).y);
 		if (map->points[i + 1] != NULL && (i + 1) % map->col != 0)
-			draw_line(map, iso(map->points[i]), iso(map->points[i + 1]));
+			draw_line(map, project(*map->points[i], map),
+				project(*map->points[i + 1], map));
 		if (i / map->col < map->row - 1 && map->points[i + map->col])
-			draw_line(map, iso(map->points[i]), iso(map->points[i + map->col]));
+			draw_line(map, project(*map->points[i], map),
+				project(*map->points[i + map->col], map));
 		i++;
 	}
 }
