@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/09 15:46:05 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:43:04 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_map
 	double		alpha;
 	double		beta;
 	double		gamma;
+	int			projection;
 }	t_map;
 
 //init stuff

@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/09 16:15:26 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:42:58 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ t_point	project(t_point p, t_map *map)
 	p.z *= map->zoom / map->height;
 	p.y -= (map->row * map->zoom) / 2;
 	p.x -= (map->col * map->zoom) / 2;
-	p = iso(p);
 	p = rotate_x(p, map->alpha);
 	p = rotate_y(p, map->beta);
 	p = rotate_z(p, map->gamma);
+	p = iso(p);
 	p.x += WIDTH / 2 + map->x_offset;
 	p.y += HEIGHT / 2 + map->y_offset;
 	return (p);

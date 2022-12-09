@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 11:33:18 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/09 16:14:23 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:32:10 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	mouse_bindings(t_map *map)
 	if (mlx_is_mouse_down(map->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
 		map->gamma += (map->x - x) * 0.002;
-		map->alpha += (map->y - y) * 0.002;
-		map->beta += (map->x - x) * 0.002;
+		map->alpha += (map->y - y) * 0.02;
+		map->beta += (map->x - x) * 0.02;
 	}
 	draw(map);
 }

@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 11:30:24 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/09 16:17:08 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:22:04 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_point	rotate_y(t_point p, double beta)
 	int	z;
 
 	x = p.x;
-	z = p.y;
+	z = p.z;
 	p.x = x * cos(beta) + z * sin(beta);
 	p.z = -x * sin(beta) + z * cos(beta);
 	return (p);
