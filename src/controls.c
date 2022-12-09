@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:46:14 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 17:09:39 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 13:03:20 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ void	zoom(int key, t_map *map)
 void	move(int key, t_map *map)
 {
 	if (key == MLX_KEY_A)
-		loop_map(-1, 0, map);
+		map->x_offset -= 10;
 	if (key == MLX_KEY_D)
-		loop_map(1, 0, map);
+		map->x_offset += 10;
 	if (key == MLX_KEY_W)
-		loop_map(0, -1, map);
+		map->y_offset -= 10;
 	if (key == MLX_KEY_S)
-		loop_map(0, 1, map);
+		map->y_offset += 10;
 	draw(map);
 }
 
 void	mod_height(int key, t_map *map)
 {
-	if (key == MLX_KEY_J)
+	if (key == MLX_KEY_RIGHT)
 		map->height += 1;
-	if (key == MLX_KEY_K)
+	if (key == MLX_KEY_LEFT)
 	{
 		map->height -= 1;
 		if (map->height < 1)
@@ -50,3 +50,8 @@ void	mod_height(int key, t_map *map)
 	}
 	draw(map);
 }
+
+//void	rotate(int key, t_map *map)
+//{
+
+//}

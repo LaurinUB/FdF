@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:21:27 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/08 17:25:47 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:12:51 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,4 @@ void	exit_msg(char *str)
 {
 	ft_putendl_fd(str, 2);
 	exit(EXIT_FAILURE);
-}
-
-void	loop_map(int x_offset, int y_offset, t_map *map)
-{
-	int	i;
-
-	i = 0;
-	while (map->points[i])
-	{
-		map->points[i]->x += x_offset;
-		map->points[i]->y += y_offset;
-		i++;
-	}
 }

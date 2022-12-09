@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 17:33:34 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:48:50 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,6 @@ char	*read_file(char *path)
 	return (file);
 }
 
-//void	add_value(char **column, t_map *map)
-//{
-//	int		i;
-//	char	**tmp;
-
-//	i = 0;
-//	while (column[i])
-//		{
-//			map->points[k] = init_point(map->x, map->y, ft_atoi(column[j]));
-//			map->x += 1;
-//			k++;
-//			j++;
-//		}
-//}
-
 void	fill_points(char **lines, t_map *map)
 {
 	char	**column;
@@ -64,15 +49,12 @@ void	fill_points(char **lines, t_map *map)
 		column = ft_split(lines[i], ' ');
 		while (column[j])
 		{
-			map->points[k] = init_point(map->x, map->y, ft_atoi(column[j]));
-			map->x += 1;
+			map->points[k] = init_point(j, i, ft_atoi(column[j]));
 			k++;
 			j++;
 		}
 		j = 0;
 		i++;
-		map->y += 1;
-		map->x = 0;
 		split_free(column);
 	}
 	map->points[k] = NULL;

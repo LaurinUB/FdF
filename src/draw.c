@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/08 17:33:06 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:15:26 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_point	iso(t_point point)
 	x = point.x;
 	y = point.y;
 	point.x = (x - y) * cos(0.523599);
-	point.y = (-1 * point.z) + (x + y) * sin(0.523599);
+	point.y = (-point.z + (x + y)) * sin(0.523599);
 	return (point);
 }
 
@@ -62,8 +62,11 @@ t_point	project(t_point p, t_map *map)
 	p.y -= (map->row * map->zoom) / 2;
 	p.x -= (map->col * map->zoom) / 2;
 	p = iso(p);
-	p.x += WIDTH / 2;
-	p.y += HEIGHT / 2;
+	p = rotate_x(p, map->alpha);
+	p = rotate_y(p, map->beta);
+	p = rotate_z(p, map->gamma);
+	p.x += WIDTH / 2 + map->x_offset;
+	p.y += HEIGHT / 2 + map->y_offset;
 	return (p);
 }
 

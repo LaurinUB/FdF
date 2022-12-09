@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 14:11:16 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 10:51:47 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,7 @@ t_map	*init_map(void)
 	map->y = 0;
 	map->zoom = 10;
 	map->height = 3;
+	map->x_offset = 0;
+	map->y_offset = 0;
 	return (map);
 }

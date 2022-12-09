@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:25:13 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 17:39:58 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:39:40 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	key_bindings(void *tmp)
 	t_map	*map;
 
 	map = (t_map *)tmp;
+	mouse_bindings(map);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_ESCAPE))
 		safe_exit(map);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_UP))
@@ -39,8 +40,8 @@ void	key_bindings(void *tmp)
 		move(MLX_KEY_S, map);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_D))
 		move(MLX_KEY_D, map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_J))
-		mod_height(MLX_KEY_J, map);
-	if (mlx_is_key_down(map->mlx, MLX_KEY_K))
-		mod_height(MLX_KEY_K, map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_RIGHT))
+		mod_height(MLX_KEY_RIGHT, map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
+		mod_height(MLX_KEY_LEFT, map);
 }

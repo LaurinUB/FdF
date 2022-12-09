@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/08 15:42:31 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:46:05 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ typedef struct s_map
 	int			row;
 	int			zoom;
 	int			height;
+	int			x_offset;
+	int			y_offset;
+	double		alpha;
+	double		beta;
+	double		gamma;
 }	t_map;
 
 //init stuff
@@ -50,13 +55,18 @@ void		draw(t_map *map);
 void		exit_msg(char *str);
 int			mapsize(char **lines, t_map *map);
 void		quit(t_map *map);
-void		key_bindings(void *lol);
 void		loop_map(int x_offset, int y_offset, t_map *map);
 //free_utils
 void		split_free(char **str);
 void		free_map(t_map *map);
 //controls
+void		key_bindings(void *tmp);
+void		mouse_bindings(t_map *map);
 void		zoom(int key, t_map *map);
 void		move(int key, t_map *map);
 void		mod_height(int key, t_map *map);
+//rotation
+t_point		rotate_x(t_point p, double alpha);
+t_point		rotate_y(t_point p, double beta);
+t_point		rotate_z(t_point p, double gamma);
 #endif
