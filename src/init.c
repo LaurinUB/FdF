@@ -54,5 +54,6 @@ t_map	*init_map(void)
 	map->height = 3;
 	map->x_offset = 0;
 	map->y_offset = 0;
+    map->projection = p_iso;
 	return (map);
 }

@@ -46,6 +46,8 @@ typedef struct s_map
 	int			projection;
 }	t_map;
 
+enum e_porjection { p_iso, p_sphere };
+
 //init stuff
 t_point		*init_point(int x, int y, int z);
 t_map		*init_map(void);
@@ -70,4 +72,8 @@ void		mod_height(int key, t_map *map);
 t_point		rotate_x(t_point p, double alpha);
 t_point		rotate_y(t_point p, double beta);
 t_point		rotate_z(t_point p, double gamma);
+//projection
+t_point	    iso(t_point point);
+t_point     fisheye(t_point point);
+t_point     sphere(t_point point, t_map *map);
 #endif

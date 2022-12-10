@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/09 17:42:58 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:35:05 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,6 @@ void	draw_line(t_map *map, t_point p1, t_point p2)
 	}
 }
 
-t_point	iso(t_point point)
-{
-	int	x;
-	int	y;
-
-	x = point.x;
-	y = point.y;
-	point.x = (x - y) * cos(0.523599);
-	point.y = (-point.z + (x + y)) * sin(0.523599);
-	return (point);
-}
-
 t_point	project(t_point p, t_map *map)
 {
 	p.x *= map->zoom;
@@ -64,7 +52,7 @@ t_point	project(t_point p, t_map *map)
 	p = rotate_x(p, map->alpha);
 	p = rotate_y(p, map->beta);
 	p = rotate_z(p, map->gamma);
-	p = iso(p);
+    p = iso(p);
 	p.x += WIDTH / 2 + map->x_offset;
 	p.y += HEIGHT / 2 + map->y_offset;
 	return (p);
