@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 10:36:00 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/12 09:22:57 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:14:12 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_point	*init_point(int x, int y, int z)
 	point->x = x;
 	point->y = y;
 	point->z = z;
+	point->color = 0xFFFFFFFF;
 	return (point);
 }
 

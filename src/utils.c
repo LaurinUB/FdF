@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 15:21:27 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/09 11:12:51 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:42:33 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ void	exit_msg(char *str)
 {
 	ft_putendl_fd(str, 2);
 	exit(EXIT_FAILURE);
+}
+
+void	set_color(t_point **p)
+{
+	int	i;
+
+	i = 0;
+	while (p[i])
+	{
+		p[i]->color += (p[i]->z * 256);
+		i++;
+	}
 }

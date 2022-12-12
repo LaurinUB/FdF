@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:46:14 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/09 13:03:20 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:33:44 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,3 @@ void	mod_height(int key, t_map *map)
 	}
 	draw(map);
 }
-
-//void	rotate(int key, t_map *map)
-//{
-
-//}

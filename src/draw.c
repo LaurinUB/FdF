@@ -6,16 +6,16 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/09 23:35:05 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:29:51 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	draw_pixel(t_map *map, int x, int y)
+void	draw_pixel(t_map *map, int x, int y, uint32_t color)
 {
 	if (x < WIDTH && x > 0 && y < HEIGHT && y > 0)
-		mlx_put_pixel(map->image, x, y, 0x1111FF);
+		mlx_put_pixel(map->image, x, y, color);
 }
 
 void	draw_line(t_map *map, t_point p1, t_point p2)
@@ -35,7 +35,7 @@ void	draw_line(t_map *map, t_point p1, t_point p2)
 	pixel_y = p1.y;
 	while (pixels)
 	{
-		draw_pixel(map, pixel_x, pixel_y);
+		draw_pixel(map, pixel_x, pixel_y, p1.color);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		--pixels;
@@ -52,9 +52,12 @@ t_point	project(t_point p, t_map *map)
 	p = rotate_x(p, map->alpha);
 	p = rotate_y(p, map->beta);
 	p = rotate_z(p, map->gamma);
-    p = iso(p);
+	p = iso(p);
+	//p = fisheye(p);
+	//p = sphere(p);
 	p.x += WIDTH / 2 + map->x_offset;
 	p.y += HEIGHT / 2 + map->y_offset;
+	p.color = p.color;
 	return (p);
 }
 

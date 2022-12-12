@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/09 17:43:04 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:38:22 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		draw(t_map *map);
 void		exit_msg(char *str);
 int			mapsize(char **lines, t_map *map);
 void		quit(t_map *map);
-void		loop_map(int x_offset, int y_offset, t_map *map);
+void		set_color(t_point **p);
 //free_utils
 void		split_free(char **str);
 void		free_map(t_map *map);
@@ -75,5 +75,4 @@ t_point		rotate_z(t_point p, double gamma);
 //projection
 t_point	    iso(t_point point);
 t_point     fisheye(t_point point);
-t_point     sphere(t_point point, t_map *map);
 #endif
