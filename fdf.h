@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/12 16:38:22 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:16:16 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include <math.h>
 # include <fcntl.h>
 # define WIDTH 1024
-# define HEIGHT 767
+# define HEIGHT 768
+# define COLOR 0
 
 typedef struct s_point
 {
@@ -58,7 +59,6 @@ void		draw(t_map *map);
 void		exit_msg(char *str);
 int			mapsize(char **lines, t_map *map);
 void		quit(t_map *map);
-void		set_color(t_point **p);
 //free_utils
 void		split_free(char **str);
 void		free_map(t_map *map);
@@ -73,6 +73,10 @@ t_point		rotate_x(t_point p, double alpha);
 t_point		rotate_y(t_point p, double beta);
 t_point		rotate_z(t_point p, double gamma);
 //projection
-t_point	    iso(t_point point);
-t_point     fisheye(t_point point);
+t_point		iso(t_point point);
+t_point		fisheye(t_point point);
+t_point		sphere(t_point point, t_map *map);
+//color
+uint32_t	get_color(t_point start, t_point end, int current_x, int current_y);
+void		set_color(t_point **point);
 #endif

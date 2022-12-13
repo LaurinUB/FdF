@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/12 16:29:51 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/13 16:16:29 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_line(t_map *map, t_point p1, t_point p2)
 	pixel_y = p1.y;
 	while (pixels)
 	{
-		draw_pixel(map, pixel_x, pixel_y, p1.color);
+		draw_pixel(map, pixel_x, pixel_y, get_color(p1, p2, pixel_x, pixel_y));
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		--pixels;
@@ -52,9 +52,9 @@ t_point	project(t_point p, t_map *map)
 	p = rotate_x(p, map->alpha);
 	p = rotate_y(p, map->beta);
 	p = rotate_z(p, map->gamma);
-	p = iso(p);
+	//p = iso(p);
+	p = sphere(p, map);
 	//p = fisheye(p);
-	//p = sphere(p);
 	p.x += WIDTH / 2 + map->x_offset;
 	p.y += HEIGHT / 2 + map->y_offset;
 	p.color = p.color;
