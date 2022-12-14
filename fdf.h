@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/14 10:16:19 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:22:43 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ typedef struct s_map
 	double		beta;
 	double		gamma;
 	int			projection;
+	int			party;
 }	t_map;
 
-enum e_porjection { p_iso, p_sphere, p_fisheye };
+enum e_porjection { p_iso, p_fisheye, p_curvliniear};
 
 //init stuff
 t_point		*init_point(int x, int y, int z);
@@ -75,8 +76,8 @@ t_point		rotate_z(t_point p, double gamma);
 //projection
 t_point		iso(t_point point);
 t_point		fisheye(t_point point);
-t_point		sphere(t_point point, t_map *map);
+t_point		curvlinear(t_point point);
 //color
 uint32_t	get_color(t_point start, t_point end, int current_x, int current_y);
-void		set_color(t_point **point);
+void		set_color(t_map *map);
 #endif

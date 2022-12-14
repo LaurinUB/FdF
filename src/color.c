@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 17:18:04 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/14 10:22:32 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 17:51:49 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	percent(int start, int end, int current)
 
 uint32_t	get_light(int start, int end, double percentage)
 {
-	return ((int)(1 - percentage) *start + percentage * end);
+	return (start * (int)(1 - percentage) + percentage * end);
 }
 
 uint32_t	get_color(t_point start, t_point end, int current_x, int current_y)
@@ -62,20 +62,20 @@ uint32_t	base_color(t_point *p)
 	z = p->z;
 	if (p->z < 0)
 		z *= -1;
-	red = ((p->color >> 24) & 0xFF) + (z * 8);
-	green = ((p->color >> 16) & 0xFF) + (z * 4);
-	blue = ((p->color >> 8) & 0xFF) + (z);
+	red = ((p->color >> 24) & 0xFF) + (z * 4);
+	green = ((p->color >> 16) & 0xFF) + (z * 2);
+	blue = ((p->color >> 8) & 0xFF) + z;
 	return ((red << 24) + (green << 16) + (blue << 8) + 0xFF);
 }
 
-void	set_color(t_point **p)
+void	set_color(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	while (p[i])
+	while (map->points[i])
 	{
-		p[i]->color = base_color(p[i]);
+		map->points[i]->color = base_color(map->points[i]);
 		i++;
 	}
 }

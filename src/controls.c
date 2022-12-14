@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:46:14 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/14 10:19:03 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:18:50 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,12 @@ void	change_projection(t_map *map)
 	if (mlx_is_key_down(map->mlx, MLX_KEY_1))
 		map->projection = p_iso;
 	else if (mlx_is_key_down(map->mlx, MLX_KEY_2))
-		map->projection = p_sphere;
-	else if (mlx_is_key_down(map->mlx, MLX_KEY_3))
 		map->projection = p_fisheye;
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_3))
+		map->projection = p_curvliniear;
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_I))
+		map->party = 1;
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_O))
+		map->party = 0;
 	draw(map);
 }

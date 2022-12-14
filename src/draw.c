@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/14 10:28:21 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:22:13 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ t_point	project(t_point p, t_map *map)
 	p = rotate_z(p, map->gamma);
 	if (map->projection == p_iso)
 		p = iso(p);
-	else if (map->projection == p_sphere)
-		p = sphere(p, map);
-	else
+	else if (map->projection == p_fisheye)
 		p = fisheye(p);
+	else
+		p = curvlinear(p);
 	p.x += WIDTH / 2 + map->x_offset;
 	p.y += HEIGHT / 2 + map->y_offset;
 	p.color = p.color;
@@ -69,6 +69,8 @@ void	draw(t_map *map)
 	int	i;
 
 	i = 0;
+	if (map->party == 1)
+		set_color(map);
 	ft_bzero(map->image->pixels, WIDTH * HEIGHT * 4);
 	while (map->points[i])
 	{
