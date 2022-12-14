@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/13 16:16:29 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:28:21 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,12 @@ t_point	project(t_point p, t_map *map)
 	p = rotate_x(p, map->alpha);
 	p = rotate_y(p, map->beta);
 	p = rotate_z(p, map->gamma);
-	//p = iso(p);
-	p = sphere(p, map);
-	//p = fisheye(p);
+	if (map->projection == p_iso)
+		p = iso(p);
+	else if (map->projection == p_sphere)
+		p = sphere(p, map);
+	else
+		p = fisheye(p);
 	p.x += WIDTH / 2 + map->x_offset;
 	p.y += HEIGHT / 2 + map->y_offset;
 	p.color = p.color;

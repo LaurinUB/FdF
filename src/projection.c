@@ -49,7 +49,6 @@ t_point	sphere(t_point p, t_map *map)
 		lat = p.y + ((p.y / 2) - 1) * step_y + 0.5 * step_y;
 	p.x = radius + p.z * cos(lng) * sin(lat);
 	p.y = radius + p.z * sin(lng) * sin(lat);
-	p.z = radius + p.z * cos(lat);
 	return (p);
 }
 

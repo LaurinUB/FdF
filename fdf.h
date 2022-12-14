@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/13 16:16:16 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:16:19 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <fcntl.h>
 # define WIDTH 1024
 # define HEIGHT 768
-# define COLOR 0
 
 typedef struct s_point
 {
@@ -47,7 +46,7 @@ typedef struct s_map
 	int			projection;
 }	t_map;
 
-enum e_porjection { p_iso, p_sphere };
+enum e_porjection { p_iso, p_sphere, p_fisheye };
 
 //init stuff
 t_point		*init_point(int x, int y, int z);
@@ -68,6 +67,7 @@ void		mouse_bindings(t_map *map);
 void		zoom(int key, t_map *map);
 void		move(int key, t_map *map);
 void		mod_height(int key, t_map *map);
+void		change_projection(t_map *map);
 //rotation
 t_point		rotate_x(t_point p, double alpha);
 t_point		rotate_y(t_point p, double beta);

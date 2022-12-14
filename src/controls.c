@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:46:14 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/12 16:33:44 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:19:03 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,16 @@ void	mod_height(int key, t_map *map)
 		if (map->height < 1)
 			map->height = 1;
 	}
+	draw(map);
+}
+
+void	change_projection(t_map *map)
+{
+	if (mlx_is_key_down(map->mlx, MLX_KEY_1))
+		map->projection = p_iso;
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_2))
+		map->projection = p_sphere;
+	else if (mlx_is_key_down(map->mlx, MLX_KEY_3))
+		map->projection = p_fisheye;
 	draw(map);
 }

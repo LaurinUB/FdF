@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 17:25:13 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/09 15:39:40 by luntiet-         ###   ########.fr       */
+/*   Updated: 2022/12/14 10:12:10 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,6 @@ void	key_bindings(void *tmp)
 		mod_height(MLX_KEY_RIGHT, map);
 	if (mlx_is_key_down(map->mlx, MLX_KEY_LEFT))
 		mod_height(MLX_KEY_LEFT, map);
+	if (mlx_is_key_down(map->mlx, MLX_KEY_P))
+		change_projection(map);
 }
