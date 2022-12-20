@@ -6,7 +6,7 @@
 #    By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:07:30 by luntiet-          #+#    #+#              #
-#    Updated: 2022/12/20 10:17:10 by luntiet-         ###   ########.fr        #
+#    Updated: 2022/12/20 10:18:12 by luntiet-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ $(MLX42):
 	@cd MLX42 && make
 
 clean:
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJ) $(OBJ_DIR)
 
 fclean: clean
 	@rm -rf $(NAME)
