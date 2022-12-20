@@ -6,7 +6,7 @@
 #    By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:07:30 by luntiet-          #+#    #+#              #
-#    Updated: 2022/12/20 10:18:12 by luntiet-         ###   ########.fr        #
+#    Updated: 2022/12/20 14:07:44 by luntiet-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(LIBFT):
-	@if [ ! -d "libft" ]; then git clone https://github.com/LaurinUB/libft; fi
 	@cd libft && make && make clean
 
 $(MLX42):

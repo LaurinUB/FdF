@@ -1,4 +1,3 @@
-libft/
 *.o
 ./*.o
 test_maps/
