@@ -6,34 +6,33 @@
 #    By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:07:30 by luntiet-          #+#    #+#              #
-#    Updated: 2022/12/12 18:36:00 by luntiet-         ###   ########.fr        #
+#    Updated: 2022/12/20 10:17:10 by luntiet-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-C = cc
-
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
-
 MLXFLAGS = -lglfw -L "$(HOME)/.brew/opt/glfw/lib"
-
 NAME = fdf
+SRC_DIR = src
+OBJ_DIR = obj
+DIR_DUP = mkdir -p $(@D)
 
-SRC = ./src/fdf.c \
-		./src/init.c \
-		./src/draw.c \
-		./src/utils.c \
-		./src/free_utils.c \
-		./src/controls.c \
-		./src/key_hooks.c \
-		./src/mouse_hooks.c \
-		./src/rotate.c \
-		./src/projection.c \
-		./src/color.c
+SRC = fdf.c \
+		init.c \
+		draw.c \
+		utils.c \
+		free_utils.c \
+		controls.c \
+		key_hooks.c \
+		mouse_hooks.c \
+		rotate.c \
+		projection.c \
+		color.c
 
-OBJ = $(SRC:.c=.o)
-
+SRC := $(SRC:%=$(SRC_DIR)/%)
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT = ./libft/libft.a
-
 MLX42 = ./MLX42/libmlx42.a
 
 all: $(NAME)
@@ -50,6 +49,10 @@ $(LSANLIB):
 
 $(NAME): $(LIBFT) $(MLX42) $(OBJ)
 	@$(CC) $(LINK_FLAGS) $(OBJ) $(MLX42) $(LIBFT) -o $(NAME) $(MLXFLAGS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	$(DIR_DUP)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(LIBFT):
 	@if [ ! -d "libft" ]; then git clone https://github.com/LaurinUB/libft; fi
