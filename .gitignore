@@ -1,7 +1,6 @@
 *.o
 ./*.o
 obj/
-test_maps/
 MLX42/
 LeakSanitizer/
 fdf
