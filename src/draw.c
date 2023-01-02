@@ -6,7 +6,7 @@
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 19:04:02 by luntiet           #+#    #+#             */
-/*   Updated: 2022/12/14 18:22:13 by luntiet-         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:51:20 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_point	project(t_point p, t_map *map)
 		p = curvlinear(p);
 	p.x += WIDTH / 2 + map->x_offset;
 	p.y += HEIGHT / 2 + map->y_offset;
-	p.color = p.color;
 	return (p);
 }
 
