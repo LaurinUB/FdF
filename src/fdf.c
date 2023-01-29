@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luntiet- <luntiet-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 17:22:38 by luntiet-          #+#    #+#             */
-/*   Updated: 2022/12/14 16:10:15 by luntiet-         ###   ########.fr       */
+/*   Created: 2022/11/28 17:07:35 by luntiet-          #+#    #+#             */
+/*   Updated: 2022/12/14 18:22:43 by luntiet-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-char	*read_file(char *path)
+char	**read_file(char *path)
 {
-	char	*line;
 	int		fd;
-	char	*file;
+	char	*line;
+	char	**file;
+	int		i;
 
+	i = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (NULL);
-	file = NULL;
+	file = malloc(sizeof(char *) * 1000);
 	line = get_next_line(fd);
 	while (line)
 	{
-		file = ft_strjoin_gnl(file, line);
+		file[i] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
+		i++;
 	}
-	free (line);
+	file[i] = NULL;
 	close(fd);
 	return (file);
 }
@@ -62,8 +65,7 @@ void	fill_points(char **lines, t_map *map)
 
 void	parse_points(char *path, t_map *map)
 {
-	char	**lines;
-	char	*file;
+	char	**file;
 
 	file = read_file(path);
 	if (!file)
@@ -71,19 +73,15 @@ void	parse_points(char *path, t_map *map)
 		ft_putendl_fd("Map not found, maybe you gave the wrong path", 2);
 		quit(map);
 	}
-	lines = ft_split(file, '\n');
-	if (!lines)
-		quit(map);
-	map->points = init_points_lst(lines, map);
+	map->points = init_points_lst(file, map);
 	if (!map->points)
 	{
-		split_free(lines);
+		split_free(file);
 		free_map(map);
 		exit_msg("Failed to init list of points");
 	}
-	fill_points(lines, map);
-	free(file);
-	split_free(lines);
+	fill_points(file, map);
+	split_free(file);
 }
 
 int	main(int argc, char **argv)
