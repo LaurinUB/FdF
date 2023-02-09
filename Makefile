@@ -33,7 +33,7 @@ SRC = fdf.c \
 SRC := $(SRC:%=$(SRC_DIR)/%)
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 LIBFT = ./libft/libft.a
-MLX42 = ./MLX42/libmlx42.a
+MLX42 = ./MLX42/build/libmlx42.a
 
 all: $(NAME)
 
@@ -61,7 +61,7 @@ $(LIBFT):
 
 $(MLX42):
 	@if [ ! -d "MLX42" ]; then git clone https://github.com/codam-coding-college/MLX42.git; fi
-	@cd MLX42 && make
+	@cd MLX42 && cmake -B build && cmake --build build -j4 
 
 clean:
 	@rm -rf $(OBJ) $(OBJ_DIR)
