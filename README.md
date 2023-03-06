@@ -33,3 +33,4 @@ You can also change the projection of the object like this :
 ### how to use
 - clone the repo
 - type `./fdf /test_maps/any_map.fdf`
+- you can quit with `Esc`
